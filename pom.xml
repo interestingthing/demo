@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-parent</artifactId>-->
+        <!--<version>2.0.3.RELEASE</version>-->
+        <!--<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+        <artifactId>order-center</artifactId>
+        <groupId>com.maodou.order</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <groupId>com.example</groupId>
+    <artifactId>demo</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>demo</name>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <spring-kafka.version>2.1.6.RELEASE</spring-kafka.version>
+        <lombok.version>1.18.0</lombok.version>
+        <maven-compiler-plugin.version>3.7.0</maven-compiler-plugin.version>
+
+        <!--不在boot parent中的依赖的版本配置-->
+        <pagehelper.version>5.1.4</pagehelper.version>
+        <mybatis.spring.boot.version>1.3.2</mybatis.spring.boot.version>
+        <druid.version>1.1.10</druid.version>
+        <lettuce>5.0.4.RELEASE</lettuce>
+        <jedis>2.9.0</jedis>
+        <!--测试相关 -->
+        <powermock.version>1.7.3</powermock.version>
+        <spring.boot.test.version>1.5.9.RELEASE</spring.boot.test.version>
+        <spring-test.version>4.3.6.RELEASE</spring-test.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>  <!-- 支持识别yml配置 -->
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+        </dependency>
+
+        <!-- Test start -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.mockito</groupId>
+                    <artifactId>mockito-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring-test.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <version>${powermock.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito2</artifactId>
+            <version>${powermock.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4-rule</artifactId>
+            <version>${powermock.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-classloading-xstream</artifactId>
+            <version>${powermock.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <!-- Test end -->
+
+        <!-- log4j2 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <!-- optional=true,依赖不会传递，该项目依赖devtools；之后依赖该项目的项目如果想要使用devtools，需要重新引入 -->
+            <optional>true</optional>
+        </dependency>
+
+
+        <!-- -&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <!-- Spring-Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>net.sourceforge.javacsv</groupId>
+            <artifactId>javacsv</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+
+        <!-- lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
+        <!--<dependency>-->
+        <!--<groupId></groupId>-->
+        <!--<artifactId>spring-cloud-starter-config</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId></groupId>-->
+        <!--<artifactId>spring-cloud-starter-eureka</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+        <!--<groupId>com.guazi.avro.core</groupId>-->
+        <!--<artifactId>avro-java-sdk-core</artifactId>-->
+        <!--<version>2.0.0-RELEASE</version>-->
+        <!--</dependency>-->
+        <!-- SpringBoot devtools热部署 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <!-- optional=true,依赖不会传递，该项目依赖devtools；之后依赖该项目的项目如果想要使用devtools，需要重新引入 -->
+            <optional>true</optional>
+        </dependency>
+
+        <!--# 配置接口、度量接口和其它接口-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <!--# 将指标项暴露给prometheus-->
+        <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-registry-prometheus</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+
+            <!--<resources>-->
+            <!--<resource>-->
+            <!--<directory></directory>-->
+            <!--<targetPath></targetPath>-->
+            <!--</resource>-->
+            <!--</resources>-->
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-compiler-plugin</artifactId>-->
+                <!--<version>3.1</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>log4j-plugin-processor</id>-->
+                        <!--<goals>-->
+                            <!--<goal>compile</goal>-->
+                        <!--</goals>-->
+                        <!--<phase>process-classes</phase>-->
+                        <!--<configuration>-->
+                            <!--<proc>only</proc>-->
+                            <!--<annotationProcessors>-->
+                                <!--<annotationProcessor>-->
+                                    <!--org.apache.logging.log4j.core.config.plugins.processor.PluginProcessor-->
+                                <!--</annotationProcessor>-->
+                            <!--</annotationProcessors>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
+        </plugins>
+
+    </build>
+
+
+</project>

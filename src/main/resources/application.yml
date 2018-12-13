@@ -1,0 +1,15 @@
+server:
+  port: 8084
+
+logging:
+  config: classpath:log4j2-spring-test.xml
+#logging:
+#  config: classpath:log4j2.yml
+
+
+
+
+
+
+
+
