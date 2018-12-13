@@ -86,7 +86,7 @@
     </Appenders>
 
     <Loggers>
-        <logger name="org.springframework" level="info" additivity="false" includeLocation="true">
+        <logger name="org.springframework" level="debug" additivity="false" includeLocation="true">
             <appender-ref ref="ApiLog"/>
 
             <appender-ref ref="Console"/>

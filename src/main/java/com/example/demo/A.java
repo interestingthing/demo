@@ -5,12 +5,16 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 
+
+
 @Component
 public class A {
 
     @Resource
     B b;
-    public void print() {
-        System.out.println("I'm AAAAAA"+b);
+
+    public Integer print() {
+        //System.out.println("I'm AAAAAA"+b);
+        return 1;
     }
 }

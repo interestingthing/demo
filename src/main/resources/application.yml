@@ -3,8 +3,12 @@ server:
 
 logging:
   config: classpath:log4j2-spring-test.xml
+spring:
+  aop:
+    proxy-target-class: true
 #logging:
 #  config: classpath:log4j2.yml
+
 
 
 

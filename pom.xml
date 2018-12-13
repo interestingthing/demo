@@ -3,13 +3,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-starter-parent</artifactId>-->
-        <!--<version>2.0.3.RELEASE</version>-->
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.3.RELEASE</version>
         <!--<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
-        <artifactId>order-center</artifactId>
-        <groupId>com.maodou.order</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <!--<artifactId>order-center</artifactId>-->
+        <!--<groupId>com.maodou.order</groupId>-->
+        <!--<version>1.0-SNAPSHOT</version>-->
     </parent>
     <groupId>com.example</groupId>
     <artifactId>demo</artifactId>
@@ -131,22 +131,7 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
-        <!-- Spring-Boot -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
 
-
-        <dependency>
-            <groupId>net.sourceforge.javacsv</groupId>
-            <artifactId>javacsv</artifactId>
-            <version>2.0</version>
-        </dependency>
 
 
         <!-- lombok -->
@@ -160,38 +145,6 @@
             <artifactId>fastjson</artifactId>
         </dependency>
 
-        <!--<dependency>-->
-        <!--<groupId></groupId>-->
-        <!--<artifactId>spring-cloud-starter-config</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId></groupId>-->
-        <!--<artifactId>spring-cloud-starter-eureka</artifactId>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-        <!--<groupId>com.guazi.avro.core</groupId>-->
-        <!--<artifactId>avro-java-sdk-core</artifactId>-->
-        <!--<version>2.0.0-RELEASE</version>-->
-        <!--</dependency>-->
-        <!-- SpringBoot devtools热部署 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <!-- optional=true,依赖不会传递，该项目依赖devtools；之后依赖该项目的项目如果想要使用devtools，需要重新引入 -->
-            <optional>true</optional>
-        </dependency>
-
-        <!--# 配置接口、度量接口和其它接口-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
-        <!--# 将指标项暴露给prometheus-->
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>micrometer-registry-prometheus</artifactId>
-        </dependency>
 
     </dependencies>
 
