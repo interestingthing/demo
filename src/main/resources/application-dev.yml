@@ -1,0 +1,27 @@
+server:
+  port: 8080
+logging:
+  config: classpath:log4j2-spring-test.xml
+spring:
+  aop:
+    proxy-target-class: true
+    auto: true
+  profiles: dev
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+port: 22222222
+
+#logging:
+#  config: classpath:log4j2.yml
+
+
+
+
+
+
+
+
+

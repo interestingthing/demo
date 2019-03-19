@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="off" monitorInterval="30">
     <properties>
-        <property name="LOG_HOME">../log</property>
+        <property name="LOG_HOME">./logs</property>
         <property name="ERROR_LOG_FILE_NAME">error</property>
         <property name="APP_LOG_FILE_NAME">app</property>
         <!--<property name="PATTERN_LAYOUT">[%thread] [-,%X{X-B3-TraceId:-},%style{%X{X-B3-SpanId}}{Magenta},%X{X-Span-Export}] %X{traceId} %X{cno} %highlight{%d} %-5p %style{(%F:%L)}{green} %style{%method}{cyan} - %m%n</property>-->
         <!--<property name="PATTERN_LAYOUT">[%thread] [%style{%X{traceId}}{Magenta} - %style{%X{X-B3-SpanId}}{Magenta}] %highlight{%d} %-5p %style{(%F:%L)}{green} %style{%method}{cyan} - %m%n</property>-->
-        <property name="PATTERN_LAYOUT">[%thread] [%style{%X{traceId}}{Magenta} - %style{%X{X-B3-SpanId}}{Magenta}]  %highlight{%d} %-5p %style{(%F:%L)}{green} %style{%method}{cyan} - %m%n</property>
+        <property name="PATTERN_LAYOUT">[%thread] [- %style{%X{X-B3-SpanId}}{Magenta}] %X{traceId} %highlight{%d} %-5p %style{(%F:%L)}{green} %style{%method}{cyan} - %m%n</property>
+
     </properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
@@ -86,14 +87,39 @@
 
     <Loggers>
         <logger name="org.springframework" level="info" additivity="false" includeLocation="true">
+            <appender-ref ref="ApiLog"/>
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="com.maodou.order.center" level="info" additivity="false" includeLocation="true">
+            <appender-ref ref="ErrorLog"/>
+            <!--本地只吧日志打印到控制台-->
+            <appender-ref ref="AppLog"/>
+            <appender-ref ref="Console"/>
+        </logger>
+        <logger name="org.springframework.kafka" level="info" additivity="false" includeLocation="true">
+            <appender-ref ref="KfkLog"/>
+
+        </logger>
+
+        <logger name="com.maodou.order.center.service.remote.client" level="debug" additivity="false" includeLocation="true">
+            <appender-ref ref="Console"/>
+
+            <appender-ref ref="FeignLog"/>
+        </logger>
+        <logger name="com.maodou.order.center" level="info" additivity="false" includeLocation="true">
+
+            <!--本地只吧日志打印到控制台-->
+            <appender-ref ref="AppLog"/>
             <appender-ref ref="Console"/>
         </logger>
 
-        <logger name="com.client" level="debug" additivity="false" includeLocation="true">
+        <logger name="com.maodou.order.center.dao" level="debug" additivity="false" includeLocation="true">
+            <appender-ref ref="DbLog"/>
             <appender-ref ref="Console"/>
         </logger>
 
         <root level="info" includeLocation="true">
+            <appender-ref ref="ApiLog"/>
             <appender-ref ref="Console"/>
         </root>
     </Loggers>
