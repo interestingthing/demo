@@ -54,7 +54,7 @@ public class UserController {
     @GetMapping(value = "userInfo")
     User getUserInfo11(User user) {
         System.out.println(user);
-        return new User(123, "getUserInfo1");
+        return new User(123, "chenjingang");
     }
 //,
 //    consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE},

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>ZeroClipboard演示</title>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="resource/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="resource/ZeroClipboard.js"></script>
+    <style type="text/css">
+        body { font-family:arial,sans-serif; font-size:9pt; }
+        #clip_button { width:150px; text-align:center; border:1px solid black; background-color:#ccc; margin:10px 0px; padding:5px 0px; cursor:default; font-size:9pt; }
+        #clip_button.hover { background-color:#eee; }
+        #clip_button.active { background-color:#aaa; }
+    </style>
+    <script type="text/javascript">
+        var zeroClipboard = null;
+        $(function() {
+            ZeroClipboard.setMoviePath("../static/ZeroClipboard.swf");
+            zeroClipboard = new ZeroClipboard.Client();
+            zeroClipboard.setHandCursor( true );
+
+            zeroClipboard.addEventListener("load", function (client) {
+                console.log("Flash文件加载完毕。");
+            });
+
+            zeroClipboard.addEventListener("mouseOver", function (client) {// update the text on mouse over
+                zeroClipboard.setText( $("#testText").val() );
+            });
+
+            zeroClipboard.addEventListener("complete", function (client, text) {
+                alert("数据已经复制到您的剪贴板: " + text );
+            });
+
+            zeroClipboard.glue( "clip_button", "clip_container" );
+        });
+    </script>
+</head>
+
+<body>
+<center style="margin-top: 5%;"><font style="font-size: 27pt;font-weight: bold;color: red;">ZeroClipboard演示</font></center>
+<textarea id="testText" cols="50" rows="5" onChange="zeroClipboard.setText(this.value)">Copy me!</textarea>
+<div id="clip_container" style="position:relative">
+    <div id="clip_button">复制到剪贴板</div>
+</div>
+点击上面按钮后将鼠标定位到该区域，然后Ctrl+V即可看到效果:<br/>
+<textarea id="testarea" cols=50 rows=10></textarea><br/>
+<input type="button" value="清空测试区域内容" onClick="$('#testarea').val('');"/>
+</body>
+
+</html>

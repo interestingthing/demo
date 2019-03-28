@@ -4,6 +4,7 @@ import feign.RequestTemplate;
 import feign.codec.EncodeException;
 import feign.codec.Encoder;
 import feign.form.FormEncoder;
+import org.springframework.http.MediaType;
 
 import java.lang.reflect.Type;
 
@@ -23,16 +24,16 @@ public class FeignEncoder extends FormEncoder {
     public void encode(Object object, Type bodyType, RequestTemplate template) throws EncodeException {
         String method = template.method();
         super.encode(object, bodyType, template);
-//        if ("GET".compareToIgnoreCase(method) == 0 && template.requestBody().asString().length() != 0) {
-//            String body = template.requestBody().asString();
-//
-//            if (body.contains("{") && body.contains("}") && body.contains(":")) {
-//                body=jsonToUrl(body);
-//            }
-//
-//            template.uri("?" + body, true);
-//            template.header("Content-type",MediaType.APPLICATION_FORM_URLENCODED_VALUE);
-//        }
+        if ("GET".compareToIgnoreCase(method) == 0 && template.requestBody().asString().length() != 0) {
+            String body = template.requestBody().asString();
+
+            if (body.contains("{") && body.contains("}") && body.contains(":")) {
+                body=jsonToUrl(body);
+            }
+
+            template.uri("?" + body, true);
+            template.header("Content-type",MediaType.APPLICATION_FORM_URLENCODED_VALUE);
+        }
     }
 
     private String jsonToUrl(String s) {

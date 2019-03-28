@@ -1,0 +1,26 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>爬虫demo</title>
+
+    <script th:src="@{resource/jquery-3.3.1.js}"></script>
+
+    <script>
+        $("#div").click(function () {
+
+            $.get("user/userInfo", function (data, status) {
+                alert("数据: " + data + "\n状态: " + status);
+            });
+        });
+
+    </script>
+
+</head>
+<body>
+
+<button id="div">点击事件</button>
+
+
+</body>
+</html>

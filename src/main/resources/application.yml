@@ -1,7 +1,6 @@
 spring:
   profiles:
     active: test
-
   datasource:
     url: jdbc:mysql://localhost:3306/LotterySystem?characterEncoding=UTF-8&&useSSL=false
     username: root
@@ -32,6 +31,12 @@ spring:
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
     # 合并多个DruidDataSource的监控数据
     useGlobalDataSourceStat: true
+  thymeleaf:
+    enabled: true
+    mode: HTML5
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
 
 springfox:
   documentation:

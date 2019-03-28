@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="resource/jquery-3.3.1.js"></script>
+    <script src="resource/ZeroClipboard.js"></script>
+
+    <style type="text/css">
+
+        .jq-error {
+            font-size: 12px;
+            min-width: 150px;
+            width: auto;
+            max-width: 350px;
+            line-height: 20px;
+            position: relative;
+            border: 1px solid #fe4e4c;
+            background-color: #fe4e4c;
+            color: white;
+            margin-top: 5px;
+            padding: 4px 10px;
+        }
+
+        .error-bottom > div {
+            width: 8px;
+            height: 8px;
+            position: absolute;
+            background-color: #fe4e4c;
+            transform: rotate(45deg);
+            margin-top: -7px;
+        }
+
+        .error-top {
+            position: absolute;
+            margin-top: -67px;
+        }
+
+        .error-top > div {
+            width: 8px;
+            height: 8px;
+            position: absolute;
+            background-color: #fe4e4c;
+            transform: rotate(45deg);
+            bottom: -5px;
+        }
+
+        .error-right {
+            float: right;
+            margin-left: 10px;
+            margin-top: 0;
+        }
+
+        .error-right > div {
+            width: 8px;
+            height: 8px;
+            position: absolute;
+            background-color: #fe4e4c;
+            transform: rotate(45deg);
+            left: -5px;
+            margin-top: 5px;
+        }
+
+        textarea {
+            overflow: auto;
+            /*resize:none;*/
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        //实现复制功能
+        var zeroClipboard = null;
+        $(function () {
+            ZeroClipboard.setMoviePath("../static/ZeroClipboard.swf");
+            zeroClipboard = new ZeroClipboard.Client();
+            zeroClipboard.setHandCursor(true);
+
+            zeroClipboard.addEventListener("load", function (client) {
+                console.log("Flash文件加载完毕。");
+            });
+
+            zeroClipboard.addEventListener("mouseOver", function (client) {// update the text on mouse over
+                zeroClipboard.setText($("#result1").val());
+            });
+
+            zeroClipboard.addEventListener("complete", function (client, text) {
+                alert("数据已经复制到您的剪贴板: " + text);
+            });
+
+            zeroClipboard.glue("clip_button", "clip_container");
+        });
+    </script>
+</head>
+<body background="resource/bg.jpg"
+      style="background-repeat:no-repeat; background-size:100% 100%;background-attachment: fixed;">
+<h1 style="color: gainsboro">1、提取图片的链接</h1>
+
+<textarea id="get_the_url_of_the_image" title="源代码" rows="8" cols="100"
+          style="margin: 0px; width: 747px; height: 224px;" onChange="zeroClipboard.setText(this.value)"></textarea><br>
+
+<!--<input id="clear_get_the_url_of_the_image" type="submit" value="结果">-->
+<div id="clip_container">
+    <input id="submit_get_the_url_of_the_image" type="submit" value="获取结果">
+    <input id="clip_button" type="button" value="复制结果"/>
+</div>
+<p id="result1" onChange="zeroClipboard.setText(this.value)"></p>
+</body>
+
+<script type="text/javascript">
+    // 提取图片的链接
+    $("#submit_get_the_url_of_the_image").click(function () {
+        $(".jq-error").hide();
+        var innerText = $("#get_the_url_of_the_image").val();
+        if (innerText.length === 0) {
+            $(this).error({errorStyle: 'error-top', msg: '不能为空～'});
+            return;
+        }
+
+        // src="http://img8.IcDresses.com/pri/v/201903/115239-821100-F5.jpg"
+        var pattern1 = /src="http["/\w:.-]+/igm;
+        var result = innerText.match(pattern1);
+
+        //去掉前缀和后缀
+        if (result != null) {
+            var str = "";
+            result.map(function (value, index) {
+                str += value.substring(5, value.length - 1) + "<br>"
+            });
+
+            var s = str.replace(/\/v\//g, "/am/");
+
+            $("#result1").html(s);
+            return;
+        }
+        $("#result1").html("无匹配结果");
+    });
+</script>
+</html>
